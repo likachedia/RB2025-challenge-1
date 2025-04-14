@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Element } from "./components/Element";
-import { WinCount } from "./components/Winner";
+import { WinCount } from "./components/WinCount";
 import { Result } from "./components/Result";
 import { elementTypes, evalResult, WinType } from "./Utils";
 
