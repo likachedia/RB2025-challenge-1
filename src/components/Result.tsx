@@ -9,8 +9,8 @@ function Result({userChoice, computerChoice, winner}: ResultProps){
     if(winner) {
         return (
             <div>
-                <p>You choose {userChoice}</p>
-                <p>Computer choose {computerChoice}</p>
+                <p>You choose: {userChoice}</p>
+                <p>Computer choose: {computerChoice}</p>
                 <p>{winner == WinType.DRAW ? 'Draw' : `${winner} won`} </p>
             </div>
         )
