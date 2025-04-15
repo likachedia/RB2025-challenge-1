@@ -1,3 +1,10 @@
+/* რეაქტი არ გვაძალებს ფაილის სახელი რა უნდა ერქვას ან სად შეგვიძლია კონფოგურაცია აღვწეროთ.
+   ჩვენთვის კითხვადია,  მსგავსი კონფოგურაცია 1 ადგილას მოვაქციოთ
+   ფაილი თუ კომპონენტს არ აბრუნებს არ გვინდა სახელი ქამელქქეისში
+*/
+
+
+// ტაიპსკრიტპის სპეციფიური კონფიგურაციები /types/*.ts  ში გავიტანოთ
 export enum elementTypes {
   ROCK = 'Rock',
   PAPER = 'Paper',
@@ -10,6 +17,7 @@ export enum WinType {
   DRAW = 'Draw'
 }
 
+// დამხმარე ფუნქციისთვიის /src/lib/helpers/*.ts  იდეალური ადგილია
 export function evalResult(userChoice: elementTypes, computerChoice: elementTypes){
   if(userChoice == computerChoice) return WinType.DRAW;
 
