@@ -10,6 +10,8 @@ function WinCount({winner}: winCountProps){
     const [computerWin, setComputerWin] = useState(0);
 
     useEffect(() => {
+        // როცა ჩადგმული იფ ელსე ბლოკია ყოველთვის ჯობია კლასიკური იფ / ელსე გამოვიყენოთ
+        //  რთულია საკითხავად და გასაგებად თუ რაიმე შეცდომა მოხდა
         winner == WinType.USER ? setUserWin(userWin + 1) : winner == WinType.COMPUTER ? setComputerWin(computerWin + 1) : null;
     }, [winner])
     return (

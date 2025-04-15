@@ -14,7 +14,12 @@ function Result({userChoice, computerChoice, winner}: ResultProps){
                 <p>{winner == WinType.DRAW ? 'Draw' : `${winner} won`} </p>
             </div>
         )
-    } else return null;
+    }
+
+    // აქ არ გინდა else.  if ბლოკში რო შევა უკვე აბრუნებს კომპონენტი მნიშვნელობას ქვედა return ზე აღარ ჩამოვა
+    // უფრო კითხვადია ჯერ if(!winner) return null,  და შემდეგ return <div>...</div>
+
+    return null;
 
 }
 

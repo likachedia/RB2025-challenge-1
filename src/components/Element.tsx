@@ -14,14 +14,14 @@ function Element({type, userSelects, computerChoice, reset}: elementProps){
     useEffect(() => {
         if(computerChoice == type) { setBackground('blue-background')}
     }, [computerChoice])
-    
+
     useEffect(() => {
         if(reset) {
             setSelected(false);
             setBackground("");
         }
     }, [reset])
-    
+
     return (
         <div className="element">
             <button className={`border ${background} ${ userSelected ? 'green-background' : ''}`} onClick={() =>
