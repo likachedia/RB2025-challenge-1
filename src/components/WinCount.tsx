@@ -10,7 +10,8 @@ function WinCount({winner}: winCountProps){
     const [computerWin, setComputerWin] = useState(0);
 
     useEffect(() => {
-        winner == WinType.USER ? setUserWin(userWin + 1) : winner == WinType.COMPUTER ? setComputerWin(computerWin + 1) : null;
+        if(winner == WinType.USER) setUserWin(userWin + 1);
+        if(winner == WinType.COMPUTER) setComputerWin(computerWin + 1);
     }, [winner])
     return (
         <div>
