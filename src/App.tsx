@@ -1,29 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Element } from "./components/Element";
 import { WinCount } from "./components/WinCount";
 import { Result } from "./components/Result";
-import { elementTypes, evalResult, WinType } from "./Utils";
-
-
-function generateComputerAnswer(): elementTypes {
-  const randomNum = Math.random() * 1000; 
-
-  if(randomNum > 650){
-    return elementTypes.ROCK;
-  } else if(randomNum > 350){
-    return elementTypes.PAPER;
-  } else {
-    return elementTypes.SCISSOR;
-  }
-}
-
+import { elementTypes, WinType } from "./lib/types/types";
+import { evalResult, generateComputerAnswer } from "./lib/helpers/utils";
+import { elemnts } from "./lib/config/config";
+import { useGameState } from "./useGameState";
 
 function App() {
-  const [winner, setWinner] = useState<WinType | undefined>();
-  const [userSelection, setUserSelection] = useState<elementTypes | undefined>();
-  const [compSelection, setCompSelection] = useState<elementTypes | undefined>();
-  const [reset, setReset] = useState<boolean>(false);
-
+  const {winner, setWinner, userSelection, setUserSelection, compSelection, setCompSelection, reset, setReset}= useGameState();
 
   useEffect(() => {
     userSelection != undefined ? setCompSelection(generateComputerAnswer()) : null;
@@ -38,25 +23,25 @@ function App() {
 
   }, [compSelection]);
 
-  const handleUserSelect = (type: elementTypes) => {
+  function handleUserSelect(type: elementTypes){
       setUserSelection(type)
   };
 
-  const handleReset = () => {
+  function handleReset() {
     setUserSelection(undefined);
     setCompSelection(undefined);
     setWinner(undefined);
     setReset(true);
   }
+
     return (
       <>
         <h2 className="title">Scissor paper rock</h2>
-        <Element type="Rock" userSelects={handleUserSelect} computerChoice={compSelection} reset={reset}/>
-        <Element type="Paper" userSelects={handleUserSelect} computerChoice={compSelection} reset={reset}/>
-        <Element type="Scissor" userSelects={handleUserSelect} computerChoice={compSelection} reset={reset}/>
+        {elemnts.map(element => {
+          return <Element key={element.id} type={element.type} userSelects={handleUserSelect} computerChoice={compSelection} reset={reset}/>
+        })}
         <WinCount winner={winner} />
-
-        <Result  winner={winner} userChoice={userSelection} computerChoice={compSelection}/>
+        {winner ? <Result  winner={winner} userChoice={userSelection} computerChoice={compSelection}/> : null}       
         <button onClick={handleReset}>Try Again</button>
       </>
     );
